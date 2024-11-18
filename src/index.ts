@@ -55,6 +55,9 @@ const apiRoute = app;
 apiRoute.openapi(all, (c) => {
   return c.json(buildResponse(0, "success", null), 200);
 });
+app.get("/api", (c) => {
+  return c.json("Welcome vercel");
+});
 prodcutRoute(apiRoute);
 
 app.get("/ui", swaggerUI({ url: "/doc" }));
