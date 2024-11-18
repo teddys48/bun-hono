@@ -22,6 +22,7 @@ app.doc("/doc", {
 app.get(
   "/swagger",
   apiReference({
+    theme: "solarized",
     spec: {
       url: "/doc",
     },
