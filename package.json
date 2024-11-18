@@ -2,7 +2,7 @@
   "name": "hono",
   "scripts": {
     "dev": "bun run --hot index.ts",
-    "build": "bun build ./index.ts --compile --outfile=app"
+    "deploy": "vercel"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.4.1",
