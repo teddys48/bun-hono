@@ -1,10 +1,7 @@
-import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { swaggerUI } from "@hono/swagger-ui";
 import { OpenAPIHono, createRoute } from "@hono/zod-openapi";
-import { z } from "zod";
 import { buildResponse } from "./helper/response";
-// import route from "./app/product/route";
 import { prodcutRoute } from "./app/product/route";
 import responseScheme from "./schema/responseSchema";
 import { apiReference } from "@scalar/hono-api-reference";
@@ -51,15 +48,14 @@ const all = createRoute({
   },
 });
 
-const apiRoute = app;
-apiRoute.openapi(all, (c) => {
+app.openapi(all, (c) => {
   return c.json(buildResponse(0, "success", null), 200);
 });
 app.get("/api", (c) => {
   return c.json("Welcome vercel");
 });
-prodcutRoute(apiRoute);
+prodcutRoute(app);
 
 app.get("/ui", swaggerUI({ url: "/doc" }));
 
-export { app, apiRoute };
+export { app };
