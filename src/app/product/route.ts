@@ -21,6 +21,7 @@ const all = createRoute({
 
 const prodcutRoute = (app: OpenAPIHono) => {
   app.openapi(all, handler.all);
+  return app
 };
 
 export { prodcutRoute };
