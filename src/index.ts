@@ -3,15 +3,15 @@ import { swaggerUI } from "@hono/swagger-ui";
 import { OpenAPIHono, createRoute } from "@hono/zod-openapi";
 import { buildResponse } from "./helper/response";
 import { prodcutRoute } from "./app/product/route";
-import responseScheme from "./schema/responseSchema";
+import responseScheme from "./schema/response.schema";
 import { apiReference } from "@scalar/hono-api-reference";
 
 const app = new OpenAPIHono();
 // const app = new Hono();
 app.doc("/doc", {
-  openapi: "3.0.0",
+  openapi: "3.0.3",
   info: {
-    version: "1.0.0",
+    version: "0.0.0",
     title: "My API",
   },
 });
@@ -19,10 +19,11 @@ app.doc("/doc", {
 app.get(
   "/swagger",
   apiReference({
-    theme: "solarized",
+    theme: "saturn",
     spec: {
       url: "/doc",
     },
+    cdn: "https://cdn.jsdelivr.net/npm/@scalar/api-reference@latest/dist/browser/standalone.min.js",
   })
 );
 

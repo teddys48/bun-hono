@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import { buildResponse } from "../../helper/response";
 import * as repository from "./repository";
+import { randomNumber } from "../../helper/random-number";
 
 const all = async (c: Context) => {
   try {
@@ -25,13 +26,18 @@ const find = async (c: Context) => {
 
 const create = async (c: Context) => {
   try {
-    let { name, quantity, buy_price, sell_price }: any = c.req.json();
+    let { name, quantity, buy_price, sell_price, bundle_price }: any =
+      c.req.json();
+
+    const code = "PRODUCT" + randomNumber();
 
     const dataInsert = {
       name: name,
+      code: code,
       quantity: quantity,
       buy_price: buy_price,
       sell_price: sell_price,
+      bundle_price: bundle_price,
     };
 
     await repository.create(dataInsert);
